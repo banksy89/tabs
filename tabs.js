@@ -34,7 +34,7 @@ require(['jquery'], function($) {
              * @access public
              * @param string
              */
-            tabsActiveClass : 'tabs--active',
+            tabsActiveClass : 'tabs__menu--active',
 
             /**
              * Instantiated jquery object of 
@@ -92,7 +92,10 @@ require(['jquery'], function($) {
                 // Action the first tab defaults
                 this.tabsContent.hide();
                 this.firstTabContent.show();
+
                 this.tabsMenuFirst.addClass(this.tabsActiveClass);
+
+                this.displayTabByHash();
             },
 
             /**
@@ -101,12 +104,13 @@ require(['jquery'], function($) {
             displayTabByHash : function () {
 
                 if (!!this.hash) {
-                    var currentTab = hash.replace(hashIdentifer+'-', '');
-                    var currentTabElem = $(tabsMenu[currentTab-1]); 
+                    var hash = this.hash;
+                    var currentTab = hash.replace(this.hashIdentifer+'-', '');
+                    var currentTabElem = $(this.tabsMenu[currentTab-1]); 
                     
-                    setTabActive(currentTabElem);
+                    this.setTabActive(currentTabElem);
 
-                    displayTabContent(hash);
+                    this.displayTabContent(hash);
                 }
             },
 
